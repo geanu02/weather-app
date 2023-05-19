@@ -5,11 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/main.css">
-    <title>Weather App</title>
+    <title>Weather or Not</title>
 </head>
 <body>
-    <main>
+    <video autoplay muted loop id="videoBack">
+        <source src="./static/video/default.mp4" type="video/mp4" id="videoSource">
+        Your browser does not support HTML5 video.
+    </video>
+    <main class="content">
         <div id="dataContainer"></div>
+        <div id="formContainer">
+            <form action="" id="searchForm" class="">
+                <input type="text" id="txtCity" placeholder="City">
+                <input type="submit" id="btnSearch" value="Search">
+            </form>
+        </div>
+        <div id="infoContainer">
+            <div class="infoForecastContainer">
+                <h2 id="cityHeader"></h2>
+                <p>
+                    <span id="infoTemp"></span>
+                </p>
+                <p>
+                    Feels Like: <span id="infoFeels"></span>
+                </p>
+                <p>
+                    <span id="infoForecast"></span>
+                </p>
+                    High: <span id="infoHigh"></span>
+                    <span> </span>
+                    Low: <span id="infoLow"></span>
+                </p>
+            </div>
+            <div class="infoHumidityContainer">
+                <p id="infoHumidity"></p>
+            </div>
+        </div>
     </main>
     <script type="module" src="./js/script.js"></script>
 </body>
