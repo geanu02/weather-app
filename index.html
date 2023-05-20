@@ -18,22 +18,24 @@
         Your browser does not support HTML5 video.
     </video>
     <nav id="formContainer">
-        <form action="" id="searchForm" class="input-group">
-            <select id="filterChoice" class="form-select" aria-label="Filter Choice">
+        <form action="" id="searchForm" name="searchForm" class="input-group">
+            <select id="filterChoice" name="filterChoice" class="form-select" aria-label="Filter Choice">
                 <option value="city" selected>City</option>
                 <option value="zip">Zip</option>
             </select>
-            <input type="text" id="txtInput" class="form-control" placeholder="Cities of the World">
+            <input type="text" id="txtInput" name="txtInput" class="form-control" placeholder="Cities of the World">
             <select id="tempUnit" class="form-select" aria-label="Temperature unit">
                 <option value="imperial" selected>°F</option>
                 <option value="metric">°C</option>
                 <option value="standard">°K</option>
             </select>
-            <input type="submit" id="btnSearch" class="form-control btn-primary" value="Search">
+            <input type="submit" id="btnSearch" class="form-control btn btn-secondary" value="Search">
         </form>
+        <p id="validText"></p>
     </nav>
     <main class="content">
         <div id="infoContainer">
+            
             <p class="forecast mpl_0" id="infoForecast"></p>
             <h2 id="cityHeader" class="cityHeadClass mpl_0"></h2>
             <h1 id="infoTemp" class="tempClass mpl_0"></h1>
@@ -52,7 +54,7 @@
     <footer>
         <p class="textFoot">
             <span class="textFootApp">Weather or Not</span>
-            <span> </span>
+            <span>&nbsp;</span>
             <span class="textFootCredits">by 
                 <a href="https://geanu.netlify.app" alt="Geanu's Portfolio" class="creditLink">GEANU</span>
         </p>
