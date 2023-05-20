@@ -36,6 +36,18 @@ body {
     padding: 10px;
 }
 
+#filterChoice {
+    max-width: 21%;
+}
+
+#tempUnit {
+    max-width: 19%;
+}
+
+#btnSearch {
+    max-width: 25%;
+}
+
 .content {
     position: fixed;
     min-height: 300px;
@@ -50,6 +62,11 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.forecast {
+    font-family: 'Satisfy', cursive;
+    font-size: 35px;
 }
 
 .tempClass {
@@ -67,7 +84,7 @@ body {
 /* Reset Margin, Padding & Line Height */
 .mpl_0 {
     margin: 0;
-    padding: 3px 0;
+    padding: 5px 0;
     line-height: 1.0;
 }
 
