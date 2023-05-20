@@ -1,7 +1,9 @@
-import data from "./secrets.json" assert { type: 'json' }
+//import data from "./secrets.json" assert { type: 'json' }
+import { API_KEY } from "./config.js"
 import sampleApi from "./sample.json" assert { type: 'json'}
 
-const { apiKey } = data
+const apiKey = API_KEY
+//const { apiKey } = data
 const sample = sampleApi
 
 const videoBack = document.getElementById('videoBack')
@@ -47,13 +49,13 @@ async function apiCall(inputQuery, preFilter, unitFilter) {
 }
 
 // Sample Data
-(() => fillData(sample))()
+// (() => fillData(sample))()
 
-// 
-// (async () => {
-//  const data = await apiCall('new york')
-//  fillData(data)
-// })()
+
+(async () => {
+ const data = await apiCall('new york')
+ fillData(data)
+})()
 
 searchForm.addEventListener('submit', async e => {
     e.preventDefault()
