@@ -77,7 +77,7 @@ function changeVideo(forecast) {
         videoSource.setAttribute('src', "./js/video/clear.mp4")
     } else if (forecast == 'Rain') {
         videoSource.setAttribute('src', "./js/video/rain.mp4")
-    } else if (forecast == 'Hazy') {
+    } else if (forecast == 'Haze') {
         videoSource.setAttribute('src', "./js/video/hazy.mp4")
     } else if (forecast == 'Clouds') {
         videoSource.setAttribute('src', "./js/video/clouds.mp4")
@@ -89,23 +89,3 @@ function changeVideo(forecast) {
     videoBack.load()
     videoBack.play()
 }
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-  
-        form.classList.add('was-validated')
-      }, false)
-    })
-  })()
