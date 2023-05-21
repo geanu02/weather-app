@@ -1,5 +1,5 @@
 import { API_KEY } from "../etc/secrets/config.js"
-import data from "./secrets.json" assert { type: 'json' }
+import data from "../etc/secrets/secrets.json" assert { type: 'json' }
 import sampleApi from "./sample.json" assert { type: "json" };
 
 const apiKey =  API_KEY || data.api_key
