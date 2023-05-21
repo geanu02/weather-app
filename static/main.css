@@ -48,6 +48,11 @@ body {
     max-width: 25%;
 }
 
+#validText {
+    padding: 10px;
+    color: red;
+}
+
 .content {
     position: fixed;
     min-height: 400px;

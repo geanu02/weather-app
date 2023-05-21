@@ -37,8 +37,8 @@ filterChoice.addEventListener("click", e => {
     e.preventDefault()
     if (validated) {
         validateText.innerHTML = ""
+        validated = false
     }
-    validated = false
 })
 
 txtInput.addEventListener("click", e => {
@@ -46,16 +46,16 @@ txtInput.addEventListener("click", e => {
     if (validated) {
         validateText.innerHTML = ""
         txtInput.value = ""
+        validated = false
     }
-    validated = false
 })
 
 tempUnit.addEventListener("click", e => {
     e.preventDefault()
     if (validated) {
         validateText.innerHTML = ""
+        validated = false
     }
-    validated = false
 })
 
 async function apiCall(inputQuery, preFilter, unitFilter) {
@@ -66,34 +66,35 @@ async function apiCall(inputQuery, preFilter, unitFilter) {
     const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?${querySub}&appid=${apiKey}${unitSub}`
     )
+    // Validation for API Responses not equal to res.ok
     if (res.ok) {
-        console.log(res)
         const data = await res.json()
         return data
     } else if (!res.ok) {
         if (preFilter == "zip") {
-            validateText.innerText = "Enter a valid US Zip Code."
-            
+            validateText.innerText = "Enter a valid US Zip Code"
             validated = true
         } else {
-            validateText.innerText = "Enter a valid City."
+            validateText.innerText = "Enter a valid City"
             validated = true
         }
+    } else {
+        validateText.innerText = "Something went wrong. Try again in a few minutes."
+        validated = true
     }
 }
 
 // Sample Data
-// (() => fillData(sample))()
+(() => fillData(sample))()
 
-(async () => {
-  const data = await apiCall("new york", "city", "imperial");
-  fillData(data);
-})();
+// (async () => {
+//   const data = await apiCall("new york", "city", "imperial");
+//   fillData(data);
+// })();
 
-searchForm.addEventListener("submit", async (e) => {
+searchForm.addEventListener("submit", async e => {
     e.preventDefault();
     if (validateForm(filterChoice.value, txtInput.value)) {
-        console.log("NagTrue yung ValidateForm")
         const data = await apiCall(txtInput.value, filterChoice.value, tempUnit.value)
         if (filterChoice.value == 'zip') {
             fillData(data, txtInput.value)
@@ -101,7 +102,6 @@ searchForm.addEventListener("submit", async (e) => {
             fillData(data)
         }
     }
-
 });
 
 function fillData(data, zip=null) {
@@ -115,6 +115,8 @@ function fillData(data, zip=null) {
     infoHumidity.innerText = `${Math.round(data.main.humidity)}%`
     changeVideo(data.weather[0].main)
 }
+
+// changeVideo controls the background video depends on the forecast (param)
 
 function changeVideo(forecast) {
   if (forecast == "Clear") {
@@ -136,20 +138,33 @@ function changeVideo(forecast) {
   videoBack.play()
 }
 
-// Validation
+// Validation for text inputs
+
+// US Zip Code == not empty and five numeric characters
+
+// City == not empty and string of letters
 
 function validateForm(validFilter, validTxt) {
-    console.log(`ValidFilter: ${validFilter}, ValidTxt: ${validTxt}`)
     if (validFilter == "zip") {
-        if (isNaN(validTxt) || validTxt.length !== 5) {
-            validateText.innerText = "Enter a valid US Zip Code."
+        if (!validTxt.length) {
+            validateText.innerText = "Provide a Zip Code"
+            validated = true
+            return false
+        } else if (validTxt.match(/[A-Za-z]/i) || validTxt.length !== 5) {
+            validateText.innerText = "Enter a valid US Zip Code"
             validated = true
             return false
         }
-        else {
-            return true
+    } else if (validFilter == "city") {
+        if (!validTxt.length) {
+            validateText.innerText = "Provide a City"
+            validated = true
+            return false
+        } else if (validTxt.match(/[0-9]/i)) {
+            validateText.innerText = "Enter a valid City"
+            validated = true
+            return false
         }
-    } else {
-        return true
     }
-  }
+    return true
+}
