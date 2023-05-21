@@ -45,6 +45,7 @@ txtInput.addEventListener("click", e => {
     e.preventDefault()
     if (validated) {
         validateText.innerHTML = ""
+        txtInput.value = ""
     }
     validated = false
 })
@@ -66,8 +67,18 @@ async function apiCall(inputQuery, preFilter, unitFilter) {
         `https://api.openweathermap.org/data/2.5/weather?${querySub}&appid=${apiKey}${unitSub}`
     )
     if (res.ok) {
-        const data = await res.json();
+        console.log(res)
+        const data = await res.json()
         return data
+    } else if (!res.ok) {
+        if (preFilter == "zip") {
+            validateText.innerText = "Enter a valid US Zip Code."
+            
+            validated = true
+        } else {
+            validateText.innerText = "Enter a valid City."
+            validated = true
+        }
     }
 }
 
