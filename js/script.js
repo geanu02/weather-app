@@ -1,4 +1,4 @@
-import { API_KEY } from "./etc/secrets/config.js"
+import { API_KEY } from "~/etc/secrets/config.js"
 //import data from "./secrets.json" assert { type: 'json' }
 import sampleApi from "./sample.json" assert { type: "json" };
 
