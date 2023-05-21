@@ -1,5 +1,5 @@
-import { API_KEY } from "./config.js"
-import data from "./secrets.json" assert { type: 'json' }
+import { API_KEY } from "../etc/secrets/config.js"
+//import data from "./secrets.json" assert { type: 'json' }
 import sampleApi from "./sample.json" assert { type: "json" };
 
 const apiKey = data.api_key || API_KEY
@@ -85,12 +85,12 @@ async function apiCall(inputQuery, preFilter, unitFilter) {
 }
 
 // Sample Data
-(() => fillData(sample))()
+// (() => fillData(sample))()
 
-// (async () => {
-//   const data = await apiCall("new york", "city", "imperial");
-//   fillData(data);
-// })();
+(async () => {
+  const data = await apiCall("new york", "city", "imperial");
+  fillData(data);
+})();
 
 searchForm.addEventListener("submit", async e => {
     e.preventDefault();
