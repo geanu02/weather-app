@@ -94,9 +94,10 @@ async function apiCall(inputQuery, preFilter, unitFilter) {
     }
 }
 
-// Sample Data
+// Sample Data to debug
 // (() => fillData(sample))()
 
+// apiCall invoking defaulted to New York City in Imperial Units
 (async () => {
   const data = await apiCall("new york", "city", "imperial");
   fillData(data);
@@ -141,11 +142,11 @@ function changeVideo(forecast) {
         thunderstorm: ["thunderstorm", "squall"] 
     }
     if (listAtmos.sand.includes(forecast)) {
-        videoSource.setAttribute("src", "./js/video/sand.mp4")
+        videoSource.setAttribute("src", "../static/video/sand.mp4")
     } else if (listAtmos.thunderstorm.includes(forecast)) {
-        videoSource.setAttribute("src", "./js/video/thunderstorm.mp4")
+        videoSource.setAttribute("src", "../static/video/thunderstorm.mp4")
     } else {
-        videoSource.setAttribute("src", `./js/video/${forecast.toLowerCase()}.mp4`)
+        videoSource.setAttribute("src", `../static/video/${forecast.toLowerCase()}.mp4`)
     }
     videoBack.load()
     videoBack.play()
